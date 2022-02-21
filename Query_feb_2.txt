@@ -1,0 +1,40 @@
+SELECT * FROM formulary_raw_data WHERE scraper_id=1021 AND  Drug_Name_raw LIKE '%INSULIN GLARGINE%'
+
+SELECT * FROM formulary_raw_data WHERE scraper_id=1015 AND  Drug_Name_raw LIKE '%Fluticasone%'
+
+SELECT DISTINCT Traffic_Light,Traffic_Light_Desc FROM formulary_raw_data WHERE scraper_id = 1015
+
+SELECT * FROM formulary_raw_data WHERE Data_ID=405752
+
+
+SELECT * FROM formulary_raw_data WHERE Data_ID=12112942
+
+
+SELECT * FROM formulary_raw_data WHERE Data_ID=472611
+
+SELECT * FROM formulary_formatted_data WHERE Data_ID=472611
+
+
+
+UPDATE formulary_raw_data
+SET Traffic_Light ='Grey',Traffic_Light_Desc = 'JAPC does not recommend for use except in exceptional circumstances'
+WHERE Data_ID = 472611
+AND scraper_id=1015;
+
+
+
+UPDATE formulary_formatted_data
+SET Traffic_Light ='Grey',Traffic_Light_Desc = 'JAPC does not recommend for use except in exceptional circumstances'
+WHERE Data_ID = 472611
+AND scraper_id=1015;
+
+ formulary_raw_data
+SET Formulary_Status ='Restricted'
+WHERE Data_ID = 472367
+AND scraper_id=1008;
+
+
+ formulary_formatted_data
+SET Formulary_Status ='Restricted'
+WHERE Data_ID = 472367
+AND scraper_id=1008;

@@ -1,0 +1,50 @@
+
+UPDATE formulary_raw_data
+SET Nice_Tag_Links= 'https://www.nice.org.uk/guidance/TA238|https://www.nice.org.uk/guidance/TA247|https://www.nice.org.uk/guidance/ta518|https://www.nice.org.uk/guidance/ng191',Mapping_status=NULL,Source_Schedule_Tracker='Feb_2022_Missing_Priority_Data'
+WHERE Data_ID = 603082
+AND scraper_id=1004;
+
+TA294|TA305|TA409|TA346|TA486
+https://www.nice.org.uk/guidance/ta294|https://www.nice.org.uk/guidance/ta305|https://www.nice.org.uk/guidance/ta409|https://www.nice.org.uk/guidance/ta346|https://www.nice.org.uk/guidance/ta486
+
+
+
+UPDATE formulary_raw_data
+SET Mapping_status=NULL,Source_Schedule_Tracker='Feb_2022_Missing_Priority_Data'
+WHERE Data_ID = 12118929
+AND scraper_id=1004;
+
+
+
+UPDATE formulary_raw_data
+SET Nice_Tag_Links= CONCAT(Nice_Tag_Links,'|https://www.nice.org.uk/guidance/ta715'),Mapping_status=NULL,Source_Schedule_Tracker='Feb_2022_Missing_Priority_Data'
+WHERE Data_ID = 469761
+AND scraper_id=1004;
+
+
+UPDATE formulary_raw_data
+SET Nice_Tag ='TA195|TA375|TA715',WHERE Data_ID = 469761
+
+AND scraper_id=1004;
+
+
+https://www.nice.org.uk/guidance/TA238|https://www.nice.org.uk/guidance/TA247|https://www.nice.org.uk/guidance/ta518|https://www.nice.org.uk/guida
+
+https://www.nice.org.uk/guidance/TA238|https://www.nice.org.uk/guidance/TA247|https://www.nice.org.uk/guidance/ta518|https://www.nice.org.uk/guida
+https://www.nice.org.uk/guidance/TA238|https://www.nice.org.uk/guidance/TA247|https://www.nice.org.uk/guidance/ta518|https://www.nice.org.uk/guidance/ng191
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT DISTINCT Traffic_Light,Traffic_Light_Desc FROM formulary_raw_data WHERE scraper_id = 1015
+

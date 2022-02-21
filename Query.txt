@@ -1,0 +1,26 @@
+SELECT * FROM formulary_raw_data WHERE scraper_id=1021 AND  Drug_Name_raw LIKE '%INSULIN BIPHASIC LISPRO%'
+
+SELECT * FROM formulary_raw_data WHERE Data_ID=12078742
+SELECT source,source_schedule_tracker FROM formulary_formatted_data WHERE Data_ID=12078742 
+
+SELECT DISTINCT scraper_id,Organisation_name FROM formulary_raw_data WHERE scraper_id IN (1042,1044,1058,1059,1013,1027,1067,1070,1161,1038,5041,1158,1005,1010)
+
+
+SELECT DISTINCT source FROM formulary_formatted_data WHERE source_of_data='https://www.thurrockccg.nhs.uk/document-library/medicines-management/formulary-and-prescribing-guidelines/chapter-11-eye/6509-joint-glaucoma-ocular-hypertension-formulary-msemoc'
+
+
+SELECT scraper_id,Source_Schedule_Tracker,COUNT(*) FROM formulary_raw_data WHERE Source_Schedule_Tracker='missing_RAG_Feb_2022' GROUP BY scraper_id,Source_Schedule_Tracker
+
+ formulary_raw_data SET Brand_Name ='HUMALOG', Mapping_status = NULL, source_schedule_tracker = 'Feb_PDF_2022_DrugMismatch' WHERE Data_ID = 12078742
+
+ formulary_formatted_Data
+SET Source_Schedule_Tracker = CONCAT(Source_Schedule_Tracker,'_tobedeleted'),
+source = CONCAT(source,'_tobedeleted')
+WHERE data_id IN (12078742) AND scraper_id IN (1021);
+
+
+
+
+formulary_formatted_Data_mapping
+SET Source_Schedule_Tracker = CONCAT(Source_Schedule_Tracker,'_tobedeleted')
+WHERE data_id IN (12078742) AND scraper_id IN (1021);
