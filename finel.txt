@@ -1,0 +1,106 @@
+import selenium
+from selenium import webdriver
+import pandas as pd
+from pandas import ExcelWriter
+from pandas import ExcelFile
+from selenium.webdriver.support.ui import Select
+import time
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
+import  os
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+driverPath = r"C:\Users\Merit\PycharmProjects\chrome\chromedriver_win32 (1)\chromedriver.exe"
+driver = webdriver.Chrome(executable_path = driverPath)
+driver.get("https://www.cravath.com/people/index.html")
+print(driver.title)
+print(driver.current_url)
+driver.maximize_window()
+
+driver.find_element_by_xpath("(//*[contains(@class, 'icon-Close styles__closeButton--03a22cd7')])").click()
+time.sleep(3)
+a = driver.find_elements_by_class_name("l-vgap-generic-interior-section")
+
+first=[]
+second=[]
+third=[]
+forth=[]
+fifth=[]
+
+ln=0
+for i in range(0,len(a)):
+#     if(i==7):
+#         ln+=3
+#         continue
+#     elif (i == 10):
+#         ln += 3
+#         continue
+    try:
+
+        if(a[i].find_element_by_class_name("card-lister-cta__viewAllArrow--875950ce")):
+
+            a[i].find_element_by_class_name("card-lister-cta__viewAllArrow--875950ce").click()
+
+            time.sleep(5)
+            while (True):
+                names = a[i].find_elements_by_class_name("type__h3")
+                email = a[i].find_elements_by_xpath("(//*[contains(@class, 'color-dodger-blue hover-color-light-navy')])")
+                practice = a[i].find_elements_by_xpath("(//*[contains(@class, 'type__label styles__title--f614a682')])")
+                tel = a[i].find_elements_by_xpath("//a[@class='color-light-navy hover-color-dodger-blue']")
+                Postion=a[i].find_elements_by_xpath("//dd[contains(@class, 'color-light-navy')][1]")
+                try:
+
+                    for j in range(0, len(names)):
+                        first.append(names[j].text)
+                        second.append(email[j].text)
+                        third.append(tel[j].text)
+                        forth.append(practice[j].text)
+                        fifth.append(Postion[j].text)
+                except:
+                    print("Null")
+                print("####################################")
+                print("**************************************************************************************")
+                time.sleep(2)
+                try:
+                    if (driver.find_element_by_xpath("(//*[contains(@class, 'styles__arrow--fd23c3f5 icon-caret-thin-right hover-color-dodger-blue')])").is_enabled()):
+                        # print(arrow.is_enabled())
+                        # print("ee")
+                        driver.find_element_by_xpath("(//*[contains(@class, 'styles__arrow--fd23c3f5 icon-caret-thin-right hover-color-dodger-blue')])").click()
+                        # print("yes")
+
+                        time.sleep(2)
+                except:
+                    # print("no")
+                    driver.find_element_by_xpath('//a[contains(@href,"https://www.cravath.com/people/index.html")]').click()
+                    break
+            time.sleep(2)
+            ln+=3
+            driver.refresh()
+
+    except NoSuchElementException or Exception as e:
+
+        names = a[i].find_elements_by_class_name("type__h3")
+        email = a[i].find_elements_by_xpath("(//*[contains(@class, 'color-dodger-blue hover-color-light-navy')])")
+        practice = a[i].find_elements_by_xpath("(//*[contains(@class, 'type__label styles__title--f614a682')])")
+        tel = a[i].find_elements_by_xpath("//a[@class='color-light-navy hover-color-dodger-blue']")
+        Postion=a[i].find_elements_by_xpath("//dd[contains(@class, 'color-light-navy')][1]")
+        no=ln
+        ln+=len(names)
+
+        for j in range(no,no+len(names)):
+            first.append(names[j-no].text)
+            second.append(email[j].text)
+            third.append(tel[j].text)
+            forth.append(practice[j].text)
+            fifth.append(Postion[j].text)
+        print("####################################")
+        print("---------------------------------------------------------------------------------------------")
+    time.sleep(3)
+    a = driver.find_elements_by_class_name("l-vgap-generic-interior-section")
+
+
+
+
+
